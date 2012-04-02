@@ -1,0 +1,20 @@
+Name:                executable
+Version:             0.1
+Synopsis:            Library for Binary Analysis
+-- Description:         
+License:             BSD3
+License-file:        LICENSE
+Author:              Matthew Maurer
+Maintainer:          maurer@matthewmaurer.org
+Copyright:           Matthew Maurer, 2012
+Category:            System
+Build-type:          Simple
+Extra-source-files:  README
+Cabal-version:       >=1.2
+
+
+Library
+  HS-Source-Dirs:    lib
+  Exposed-modules:   Executable
+  Build-depends:     base
+  -- Other-modules:       
