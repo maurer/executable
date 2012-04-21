@@ -1,0 +1,30 @@
+digraph IL {
+raw [label="Raw Code"]
+raw -> {x86 x86_64 ARM} [label="Disassembly"]
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+		x86
+		x86_64
+		ARM
+		label = "Instruction Sets";
+	}
+{x86 x86_64 ARM} -> llil [label="Translation"]
+llil -> hlil [label="Abstraction"]
+hlil -> hlil [label="Analysis"]
+
+subgraph cluster_1 {
+	style=filled;
+	color=lightgrey;
+	node [style=filled, color=white];
+	C
+	Cpp [label="C++"]
+	OCaml
+	}
+hlil -> {C Cpp OCaml} [label="Decompilation"]
+
+llil [label="LLIL"]
+hlil [label="HLIL"]
+
+}
