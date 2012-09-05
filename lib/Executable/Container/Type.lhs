@@ -9,12 +9,11 @@ module Executable.Container.Type where
 import Executable.Arch
 import Executable.OS
 import Executable.Data.MemMap
-import Executable.MachTypes
 
 data ExecContainer = EC {
    ecMemMap :: MemMap
   ,ecArch   :: Arch
-  ,ecInit   :: Addr
+  ,ecInit   :: Word64
   ,ecOs     :: OS
 }
 
