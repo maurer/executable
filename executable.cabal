@@ -16,7 +16,8 @@ Cabal-version:       >=1.2
 Library
   HS-Source-Dirs:    lib
   Exposed-modules:   Executable
-  Build-depends:     base, bytestring, fingertree
+  Build-depends:     base, bytestring, fingertree, elf, spoon,
+                     deepseq, containers
   Other-modules:     Executable.Data.MemMap
                      Executable.OS
                      Executable.Arch

@@ -5,7 +5,12 @@ The basic information we expect to get out of a container is
 * The expected environment (e.g. OS)
 
 \begin{code}
-module Executable.Container.Type where
+module Executable.Container.Type
+(ExecContainer(..)
+,module Executable.Data.MemMap
+,Arch(..)
+,OS(..)
+) where
 import Executable.Arch
 import Executable.OS
 import Executable.Data.MemMap
@@ -13,8 +18,8 @@ import Executable.Data.MemMap
 data ExecContainer = EC {
    ecMemMap :: MemMap
   ,ecArch   :: Arch
-  ,ecInit   :: Word64
-  ,ecOs     :: OS
+  ,ecEntry  :: Word64
+  ,ecOS     :: OS
 }
 
 \end{code}
