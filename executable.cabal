@@ -10,7 +10,7 @@ Copyright:           Matthew Maurer, 2012
 Category:            System
 Build-type:          Simple
 Extra-source-files:  README
-Cabal-version:       >=1.2
+Cabal-version:       >=1.8
 
 
 Library
@@ -25,3 +25,8 @@ Library
                      Executable.Container.ELF
                      Executable.Container.Type
                      Executable.Container
+
+Executable dumpElf
+  HS-Source-Dirs:    prog
+  Build-depends:     executable
+  Main-Is:           dumpElf.hs

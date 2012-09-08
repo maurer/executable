@@ -1,4 +1,4 @@
 \begin{code}
-module Executable where
+module Executable (module Executable.Container) where
 import Executable.Container
 \end{code}
