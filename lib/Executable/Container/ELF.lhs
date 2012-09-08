@@ -7,6 +7,7 @@ import Data.Elf
 import Control.Spoon
 import Control.DeepSeq
 import qualified Data.Set as S
+import Data.Char
 
 -- TODO this feels sketchy, find a better way to absorb his exn
 instance NFData Elf where
@@ -23,12 +24,30 @@ loadELF rawELF = do
                   _ -> Nothing
   let entry = elfEntry parsedELF
   let mem   = foldl loadSeg emptyMemMap (elfSegments parsedELF)
+  let syms  = foldl loadSym emptySymtab (concat $ parseSymbolTables parsedELF)
   return $ EC { ecMemMap = mem
               , ecArch   = arch
               , ecEntry  = entry
               , ecOS     = os
+              , ecSyms   = syms
               }
-  where loadSeg :: MemMap -> ElfSegment -> MemMap
+  where loadSym :: Symtab -> ElfSymbolTableEntry -> Symtab
+        loadSym tab ste = case steName ste of
+          (_, Just name) -> let
+            base = steValue ste
+            sym  = Sym { symName  = map (chr . fromIntegral) $ BS.unpack $ name
+                       , symRange = (base, base + (steSize ste) - 1)
+                       , symType  = transType $ steType ste}
+            in insertSym sym tab
+          _ -> tab
+        transType :: ElfSymbolType -> Maybe SymType
+        transType STTNoType  = Nothing
+        transType STTObject  = Just Object
+        transType STTFunc    = Just Func
+        transType STTSection = Just Sect
+        transType STTFile    = Just File
+        transType _          = Nothing
+        loadSeg :: MemMap -> ElfSegment -> MemMap
         loadSeg mem seg = let
           len     = elfSegmentMemSize seg
           base    = elfSegmentVirtAddr seg

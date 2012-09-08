@@ -8,18 +8,21 @@ The basic information we expect to get out of a container is
 module Executable.Container.Type
 (ExecContainer(..)
 ,module Executable.Data.MemMap
+,module Executable.Data.Symtab
 ,Arch(..)
 ,OS(..)
 ) where
 import Executable.Arch
 import Executable.OS
 import Executable.Data.MemMap
+import Executable.Data.Symtab
 
 data ExecContainer = EC {
    ecMemMap :: MemMap
   ,ecArch   :: Arch
   ,ecEntry  :: Word64
   ,ecOS     :: OS
+  ,ecSyms   :: Symtab
 }
 
 \end{code}
