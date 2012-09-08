@@ -19,6 +19,7 @@ Library
   Build-depends:     base, bytestring, fingertree, elf, spoon,
                      deepseq, containers
   Other-modules:     Executable.Data.MemMap
+                     Executable.Data.Symtab
                      Executable.OS
                      Executable.Arch
                      Executable.Container.ELF
