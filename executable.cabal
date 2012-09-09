@@ -27,6 +27,6 @@ Library
                      Executable.Container
 
 Executable dumpElf
-  HS-Source-Dirs:    prog, base
-  Build-depends:     executable
+  HS-Source-Dirs:    prog
+  Build-depends:     executable, base
   Main-Is:           dumpElf.hs
